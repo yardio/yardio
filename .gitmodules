@@ -16,3 +16,6 @@
 [submodule "yardio-server-play"]
 	path = yardio-server-play
 	url = git@github.com:yardio/yardio-server-play.git
+[submodule "yardio-module-bitbucket"]
+	path = yardio-module-bitbucket
+	url = git@github.com:yardio/yardio-module-bitbucket.git
