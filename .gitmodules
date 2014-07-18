@@ -19,3 +19,15 @@
 [submodule "yardio-module-bitbucket"]
 	path = yardio-module-bitbucket
 	url = git://github.com/yardio/yardio-module-bitbucket.git
+[submodule "yardio-connector-api"]
+	path = yardio-connector-api
+	url = git://github.com/yardio/yardio-connector-api.git
+[submodule "yardio-connector-config"]
+	path = yardio-connector-config
+	url = git://github.com/yardio/yardio-connector-config.git
+[submodule "yardio-models"]
+	path = yardio-models
+	url = git://github.com/yardio/yardio-models.git
+[submodule "yardio-utils"]
+	path = yardio-utils
+	url = git://github.com/yardio/yardio-utils.git

@@ -31,3 +31,21 @@ run
 ```
 
 Then, check the running server at [localhost:9000](http://localhost:9000)
+
+## What is...
+
+### a Provider?
+
+It's a communication tool used by organizations to... you know... communicate. Yardio's goal is to enhance such providers by adding notifications from other sources and react to user messages. For example: Slack, HipChat, FlowDock, ...
+
+### an API?
+
+It's a provider endpoint to interact with it, most of the time a REST API. Yardio needs to fully implement it in Scala (well, maybe not fully... but as much as needed).
+
+### a Connector?
+
+It's the way to read and persist data. There can be only one for a running Yardio server. For example, reading from config files, or reading/writing from MongoDB, ...
+
+### a Module?
+
+It's the concrete implementation of an enhancement for providers. For example, integration with JIRA, or GitHub, or SoundCloud, ...

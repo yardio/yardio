@@ -12,39 +12,97 @@ val commonSettings = Seq(
   resolvers += "Typesafe repository mwn" at "http://repo.typesafe.com/typesafe/maven-releases/"
 )
 
-lazy val core = Project("yardio-module-core", file("yardio-module-core"))
+
+
+lazy val apiSlack = Project("yardio-api-slack", file("yardio-api-slack"))
+  .settings(commonSettings: _*)
+  .settings(
+    name := "yardio-api-slack",
+    libraryDependencies ++= Seq(json, ws)
+  )
+
+
+
+lazy val models = Project("yardio-models", file("yardio-models"))
+  .settings(commonSettings: _*)
+  .settings(
+    name := "yardio-models",
+    libraryDependencies ++= Seq(playP)
+  )
+
+lazy val utils = Project("yardio-utils", file("yardio-utils"))
+  .settings(commonSettings: _*)
+  .settings(
+    name := "yardio-utils",
+    libraryDependencies ++= Seq(playP)
+  )
+
+
+
+lazy val connectorApi = Project("yardio-connector-api", file("yardio-connector-api"))
+  .settings(commonSettings: _*)
+  .settings(
+    name := "yardio-connector-api",
+    libraryDependencies ++= Seq(playP)
+  )
+  .dependsOn(models)
+
+lazy val connectorConfig = Project("yardio-connector-config", file("yardio-connector-config"))
+  .settings(commonSettings: _*)
+  .settings(
+    name := "yardio-connector-config",
+    libraryDependencies ++= Seq(playP, wsP)
+  )
+  .dependsOn(connectorApi, moduleCore)
+
+
+
+lazy val providerSlack = Project("yardio-provider-slack", file("yardio-provider-slack"))
+  .settings(commonSettings: _*)
+  .settings(
+    name := "yardio-provider-slack",
+    libraryDependencies ++= Seq(playP)
+  )
+  .dependsOn(apiSlack, models, moduleCore)
+
+
+
+lazy val moduleCore  = Project("yardio-module-core", file("yardio-module-core"))
   .settings(commonSettings: _*)
   .settings(
     name := "yardio-module-core",
-    libraryDependencies ++= Seq(akkaP, jsonP, playP, wsP, jodaP, scalaTestPlus)
+    libraryDependencies ++= Seq(akkaP, playP, wsP, jodaP, scalaTestPlus)
   )
   .enablePlugins(SbtTwirl)
+  .dependsOn(models, utils, connectorApi)
 
-lazy val bitbucket = Project("yardio-module-bitbucket", file("yardio-module-bitbucket"))
+lazy val moduleBitbucket  = Project("yardio-module-bitbucket", file("yardio-module-bitbucket"))
   .settings(commonSettings: _*)
   .settings(
     name := "yardio-module-bitbucket",
-    libraryDependencies ++= Seq(jsonP, playP, wsP)
+    libraryDependencies ++= Seq(playP, wsP)
   )
-  .dependsOn(core)
+  .dependsOn(moduleCore)
 
-lazy val jira = Project("yardio-module-jira", file("yardio-module-jira"))
+lazy val moduleJira  = Project("yardio-module-jira", file("yardio-module-jira"))
   .settings(commonSettings: _*)
   .settings(
     name := "yardio-module-jira",
-    libraryDependencies ++= Seq(jsonP, playP, wsP)
+    libraryDependencies ++= Seq(playP, wsP)
   )
-  .dependsOn(core)
+  .dependsOn(moduleCore)
 
-lazy val zik = Project("yardio-module-zik", file("yardio-module-zik"))
+lazy val moduleZik  = Project("yardio-module-zik", file("yardio-module-zik"))
   .settings(commonSettings: _*)
   .settings(
     name := "yardio-module-zik",
-    libraryDependencies ++= Seq(jsonP, playP, wsP, jodaP)
+    libraryDependencies ++= Seq(playP, jodaP)
   )
-  .dependsOn(core)
+  .dependsOn(moduleCore)
 
-lazy val server = Project("yardio-server-play", file("yardio-server-play"))
+
+
+lazy val serverPlay  = Project("yardio-server-play", file("yardio-server-play"))
   .settings(commonSettings: _*)
   .settings(
     name := "yardio-server-play",
@@ -52,11 +110,11 @@ lazy val server = Project("yardio-server-play", file("yardio-server-play"))
   )
   .enablePlugins(PlayScala)
   .enablePlugins(SbtTwirl)
-  .dependsOn(bitbucket, jira, zik)
+  .dependsOn(connectorConfig, providerSlack, moduleJira)
 
 lazy val yardio = project.in(file("."))
   .settings(commonSettings: _*)
   .settings(
     name := "yardio"
   )
-  .aggregate(core, bitbucket, jira, zik, server)
+  .aggregate(apiSlack, models, utils, connectorApi, connectorConfig, providerSlack, moduleCore, moduleJira, serverPlay)
