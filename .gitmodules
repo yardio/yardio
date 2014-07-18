@@ -25,9 +25,3 @@
 [submodule "yardio-connector-config"]
 	path = yardio-connector-config
 	url = git@github.com:yardio/yardio-connector-config.git
-[submodule "yardio-models"]
-	path = yardio-models
-	url = git@github.com:yardio/yardio-models.git
-[submodule "yardio-utils"]
-	path = yardio-utils
-	url = git@github.com:yardio/yardio-utils.git
