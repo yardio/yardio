@@ -4,9 +4,6 @@
 [submodule "yardio-module-jira"]
 	path = yardio-module-jira
 	url = git@github.com:yardio/yardio-module-jira.git
-[submodule "yardio-module-bickbucket"]
-	path = yardio-module-bickbucket
-	url = git@github.com:yardio/yardio-module-bickbucket.git
 [submodule "yardio-module-zik"]
 	path = yardio-module-zik
 	url = git@github.com:yardio/yardio-module-zik.git
