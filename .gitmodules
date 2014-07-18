@@ -1,21 +1,21 @@
 [submodule "yardio-module-core"]
 	path = yardio-module-core
-	url = git@github.com:yardio/yardio-module-core.git
+	url = git://github.com/yardio/yardio-module-core.git
 [submodule "yardio-module-jira"]
 	path = yardio-module-jira
-	url = git@github.com:yardio/yardio-module-jira.git
+	url = git://github.com/yardio/yardio-module-jira.git
 [submodule "yardio-module-zik"]
 	path = yardio-module-zik
-	url = git@github.com:yardio/yardio-module-zik.git
+	url = git://github.com/yardio/yardio-module-zik.git
 [submodule "yardio-api-slack"]
 	path = yardio-api-slack
-	url = git@github.com:yardio/yardio-api-slack.git
+	url = git://github.com/yardio/yardio-api-slack.git
 [submodule "yardio-provider-slack"]
 	path = yardio-provider-slack
-	url = git@github.com:yardio/yardio-provider-slack.git
+	url = git://github.com/yardio/yardio-provider-slack.git
 [submodule "yardio-server-play"]
 	path = yardio-server-play
-	url = git@github.com:yardio/yardio-server-play.git
+	url = git://github.com/yardio/yardio-server-play.git
 [submodule "yardio-module-bitbucket"]
 	path = yardio-module-bitbucket
-	url = git@github.com:yardio/yardio-module-bitbucket.git
+	url = git://github.com/yardio/yardio-module-bitbucket.git
