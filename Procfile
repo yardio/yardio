@@ -1,1 +1,1 @@
-web: server/target/universal/stage/bin/yardio-server -Dhttp.port=$PORT
+web: yardio-server-play/target/universal/stage/bin/yardio-server-play -Dhttp.port=$PORT
