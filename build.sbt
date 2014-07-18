@@ -23,17 +23,17 @@ lazy val apiSlack = Project("yardio-api-slack", file("yardio-api-slack"))
 
 
 
-lazy val models = Project("yardio-models", file("yardio-models"))
+lazy val commonModels = Project("yardio-common-models", file("yardio-common-models"))
   .settings(commonSettings: _*)
   .settings(
-    name := "yardio-models",
+    name := "yardio-common-models",
     libraryDependencies ++= Seq(playP)
   )
 
-lazy val utils = Project("yardio-utils", file("yardio-utils"))
+lazy val commonUtils = Project("yardio-common-utils", file("yardio-common-utils"))
   .settings(commonSettings: _*)
   .settings(
-    name := "yardio-utils",
+    name := "yardio-common-utils",
     libraryDependencies ++= Seq(playP)
   )
 
@@ -45,7 +45,7 @@ lazy val connectorApi = Project("yardio-connector-api", file("yardio-connector-a
     name := "yardio-connector-api",
     libraryDependencies ++= Seq(playP)
   )
-  .dependsOn(models)
+  .dependsOn(commonModels)
 
 lazy val connectorConfig = Project("yardio-connector-config", file("yardio-connector-config"))
   .settings(commonSettings: _*)
@@ -63,7 +63,7 @@ lazy val providerSlack = Project("yardio-provider-slack", file("yardio-provider-
     name := "yardio-provider-slack",
     libraryDependencies ++= Seq(playP)
   )
-  .dependsOn(apiSlack, models, moduleCore)
+  .dependsOn(apiSlack, commonModels, moduleCore)
 
 
 
@@ -74,7 +74,7 @@ lazy val moduleCore  = Project("yardio-module-core", file("yardio-module-core"))
     libraryDependencies ++= Seq(akkaP, playP, wsP, jodaP, scalaTestPlus)
   )
   .enablePlugins(SbtTwirl)
-  .dependsOn(models, utils, connectorApi)
+  .dependsOn(commonModels, commonUtils, connectorApi)
 
 lazy val moduleBitbucket  = Project("yardio-module-bitbucket", file("yardio-module-bitbucket"))
   .settings(commonSettings: _*)
@@ -117,4 +117,4 @@ lazy val yardio = project.in(file("."))
   .settings(
     name := "yardio"
   )
-  .aggregate(apiSlack, models, utils, connectorApi, connectorConfig, providerSlack, moduleCore, moduleJira, serverPlay)
+  .aggregate(apiSlack, commonModels, commonUtils, connectorApi, connectorConfig, providerSlack, moduleCore, moduleJira, serverPlay)
